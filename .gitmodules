@@ -1,0 +1,3 @@
+[submodule "GameEngine"]
+	path = Yggdrasil
+	url = git@github.com:sunisok1/Yggdrasil.git
