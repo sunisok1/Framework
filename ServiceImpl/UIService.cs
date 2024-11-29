@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using Framework.Yggdrasil;
 using Framework.Yggdrasil.Services;
 using JetBrains.Annotations;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Common
 {
@@ -10,18 +13,19 @@ namespace Common
     public class UIService : IUIService
     {
         private readonly ILoggerService m_loggerService;
-        private readonly IObjectService m_objectService;
+        private readonly IResourcesService m_resourcesService;
         private Canvas canvas;
 
         private readonly Dictionary<Type, MonoBehaviour> uiDictionary = new();
 
-        public UIService(ILoggerService loggerService, IObjectService objectService)
+        [ServiceConstructor]
+        public UIService(ILoggerService loggerService, IResourcesService resourcesService)
         {
             m_loggerService = loggerService;
-            m_objectService = objectService;
+            m_resourcesService = resourcesService;
         }
 
-        public void OnStart()
+        public void OnAdd()
         {
             var gameObject = GameObject.Find("Canvas");
             if (gameObject == null)
@@ -35,11 +39,11 @@ namespace Common
             }
         }
 
-        public void OnDestroy()
+        public void OnRemove()
         {
         }
 
-        public void Open<T, TArgs>(TArgs args) where T : BaseUI<TArgs> where TArgs : CreateArgs
+        public void Open<T>() where T : UIBase
         {
             var type = typeof(T);
             if (uiDictionary.ContainsKey(type))
@@ -48,13 +52,15 @@ namespace Common
                 return;
             }
 
-            var instance = m_objectService.Create<T, TArgs>(canvas.transform, args);
+            var path = type.GetCustomAttribute<UIPathAttribute>().path;
+            var prefab = m_resourcesService.Load<T>(path);
+            var instance = Object.Instantiate(prefab, canvas.transform);
 
             uiDictionary.Add(type, instance);
             m_loggerService.Log($"UIManager: Successfully opened {type.Name}.");
         }
 
-        public void Close<T>()
+        public void Close<T>() where T : UIBase
         {
             var type = typeof(T);
             if (!uiDictionary.TryGetValue(type, out var ui))

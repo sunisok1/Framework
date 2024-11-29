@@ -7,11 +7,11 @@ namespace Framework.ServiceImpl
 {
     public class ResourcesService : IResourcesService
     {
-        public void OnStart()
+        public void OnAdd()
         {
         }
 
-        public void OnDestroy()
+        public void OnRemove()
         {
         }
 

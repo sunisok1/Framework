@@ -18,12 +18,12 @@ namespace Framework.ServiceImpl
             m_loggerService = loggerService;
         }
         
-        public void OnStart()
+        public void OnAdd()
         {
             m_loggerService.Log("EventService OnStart");
         }
 
-        public void OnDestroy()
+        public void OnRemove()
         {
         }
 

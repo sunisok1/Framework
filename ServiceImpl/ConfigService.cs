@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Framework.Yggdrasil.Services;
+using Unity.Plastic.Newtonsoft.Json;
+using Unity.Plastic.Newtonsoft.Json.Serialization;
 
 namespace Framework.ServiceImpl
 {
@@ -10,11 +13,11 @@ namespace Framework.ServiceImpl
         private readonly Dictionary<Type, Delegate> _listeners = new();
         public readonly string rootPath = "Assets/Configs";
 
-        public void OnStart()
+        public void OnAdd()
         {
         }
 
-        public void OnDestroy()
+        public void OnRemove()
         {
         }
 
@@ -33,14 +36,42 @@ namespace Framework.ServiceImpl
             _configs.Remove(typeof(T));
         }
 
-        public void LoadConfig<T>(string path) where T : IConfig
+        public T LoadConfig<T>(string path) where T : IConfig
         {
-            throw new System.NotImplementedException();
+            var fullPath = Path.Combine(rootPath, $"{path}.json");
+            var fileInfo = new FileInfo(fullPath);
+
+            if (!fileInfo.Exists)
+            {
+                throw new FileNotFoundException($"can't find {fullPath}.");
+            }
+
+            var json = File.ReadAllText(fullPath);
+            var type = typeof(T);
+            try
+            {
+                var config = (T)JsonConvert.DeserializeObject(json, type);
+                _configs[type] = config;
+                return config;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"can't load {fullPath}.json", e);
+            }
         }
 
-        public void SaveConfig<T>(string path) where T : IConfig
+        public void SaveConfig<T>(T config, string path) where T : IConfig
         {
-            throw new System.NotImplementedException();
+            var fullPath = Path.Combine(rootPath, $"{path}.json");
+            FileInfo fileInfo = new(fullPath);
+            if (fileInfo.Directory is { Exists: false })
+            {
+                Directory.CreateDirectory(fileInfo.Directory.FullName);
+            }
+
+            var serializeObject = JsonConvert.SerializeObject(config);
+            File.WriteAllText($"{fullPath}.json", serializeObject);
+            _configs[typeof(T)] = config;
         }
 
         public void RefreshConfigs()

@@ -10,12 +10,12 @@ namespace Framework.ServiceImpl
     {
         private readonly ILogger logger = Debug.unityLogger;
 
-        public void OnStart()
+        public void OnAdd()
         {
             logger.Log("UnityLogger OnStart");
         }
 
-        public void OnDestroy()
+        public void OnRemove()
         {
         }
 
