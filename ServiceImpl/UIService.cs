@@ -39,10 +39,6 @@ namespace Common
             }
         }
 
-        public void OnRemove()
-        {
-        }
-
         public void Open<T>() where T : UIBase
         {
             var type = typeof(T);

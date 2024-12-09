@@ -15,10 +15,6 @@ namespace Framework.ServiceImpl
             logger.Log("UnityLogger OnStart");
         }
 
-        public void OnRemove()
-        {
-        }
-
         public void Log(string message) => logger.Log(LogType.Log, message);
         public void LogWarning(string message) => logger.Log(LogType.Warning, message);
         public void LogError(string message) => logger.Log(LogType.Error, message);

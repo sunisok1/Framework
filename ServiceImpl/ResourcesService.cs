@@ -7,14 +7,6 @@ namespace Framework.ServiceImpl
 {
     public class ResourcesService : IResourcesService
     {
-        public void OnAdd()
-        {
-        }
-
-        public void OnRemove()
-        {
-        }
-
         public T Load<T>(string path) where T : Object
         {
             return Resources.Load<T>(path);

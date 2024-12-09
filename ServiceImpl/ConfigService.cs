@@ -13,14 +13,6 @@ namespace Framework.ServiceImpl
         private readonly Dictionary<Type, Delegate> _listeners = new();
         public readonly string rootPath = "Assets/Configs";
 
-        public void OnAdd()
-        {
-        }
-
-        public void OnRemove()
-        {
-        }
-
         public T GetConfig<T>() where T : IConfig
         {
             return (T)_configs[typeof(T)];

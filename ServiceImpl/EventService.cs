@@ -23,10 +23,6 @@ namespace Framework.ServiceImpl
             m_loggerService.Log("EventService OnStart");
         }
 
-        public void OnRemove()
-        {
-        }
-
         public void Raise<T>(object sender, T args) where T : EventArgs
         {
             var type = typeof(T);
