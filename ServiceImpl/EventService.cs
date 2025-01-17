@@ -2,23 +2,15 @@
 using System.Collections.Generic;
 using Framework.Yggdrasil;
 using Framework.Yggdrasil.Services;
-using JetBrains.Annotations;
 
 namespace Framework.ServiceImpl
 {
-    [UsedImplicitly]
-    public class EventService : IEventService
+    public partial class EventService : IEventService
     {
-        private readonly ILoggerService m_loggerService;
+        private readonly ILoggerService m_loggerService = Injector.Instance.GetService<ILoggerService>();
         private static readonly Dictionary<Type, Delegate> eventHandlers = new();
 
-        [ServiceConstructor]
-        public EventService(ILoggerService loggerService)
-        {
-            m_loggerService = loggerService;
-        }
-        
-        public void OnAdd()
+        public EventService()
         {
             m_loggerService.Log("EventService OnStart");
         }

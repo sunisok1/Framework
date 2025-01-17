@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Common
+namespace Framework.ServiceImpl
 {
     [UsedImplicitly]
     public class UIService : IUIService
@@ -18,11 +18,10 @@ namespace Common
 
         private readonly Dictionary<Type, MonoBehaviour> uiDictionary = new();
 
-        [ServiceConstructor]
-        public UIService(ILoggerService loggerService, IResourcesService resourcesService)
+        public UIService()
         {
-            m_loggerService = loggerService;
-            m_resourcesService = resourcesService;
+            m_loggerService = Injector.Instance.GetService<ILoggerService>();
+            m_resourcesService = Injector.Instance.GetService<IResourcesService>();
         }
 
         public void OnAdd()
