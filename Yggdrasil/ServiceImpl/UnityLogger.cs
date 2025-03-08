@@ -1,9 +1,8 @@
 ﻿using System;
-using Framework.Yggdrasil;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace Framework.ServiceImpl
+namespace Framework.Yggdrasil.ServiceImpl
 {
     [UsedImplicitly]
     public class UnityLogger : ILoggerService

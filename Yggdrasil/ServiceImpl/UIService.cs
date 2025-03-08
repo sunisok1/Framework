@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Framework.Yggdrasil;
 using JetBrains.Annotations;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Framework.ServiceImpl
+namespace Framework.Yggdrasil.ServiceImpl
 {
     [UsedImplicitly]
     public class UIService : IUIService

@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
-using Framework.Yggdrasil;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Framework.ServiceImpl
+namespace Framework.Yggdrasil.ServiceImpl
 {
     public class ResourcesService : IResourcesService
     {

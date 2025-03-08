@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Framework.Yggdrasil;
 
-namespace Framework.ServiceImpl
+namespace Framework.Yggdrasil.ServiceImpl
 {
     public partial class EventService : IEventService
     {

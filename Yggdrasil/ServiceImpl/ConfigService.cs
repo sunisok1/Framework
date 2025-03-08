@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Framework.Yggdrasil;
 using Unity.Plastic.Newtonsoft.Json;
-using Unity.Plastic.Newtonsoft.Json.Serialization;
 
-namespace Framework.ServiceImpl
+namespace Framework.Yggdrasil.ServiceImpl
 {
     public class ConfigService : IConfigService
     {
