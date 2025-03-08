@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Framework.Yggdrasil.Services
+namespace Framework.Yggdrasil
 {
     public interface ILoggerService : IService
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Framework.Yggdrasil.Services
+namespace Framework.Yggdrasil
 {
     public interface IConfig
     {

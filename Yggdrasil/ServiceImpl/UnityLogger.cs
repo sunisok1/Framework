@@ -1,5 +1,5 @@
 ﻿using System;
-using Framework.Yggdrasil.Services;
+using Framework.Yggdrasil;
 using JetBrains.Annotations;
 using UnityEngine;
 

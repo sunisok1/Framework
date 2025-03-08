@@ -1,7 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-namespace Framework.Yggdrasil.Services
+namespace Framework.Yggdrasil
 {
     public interface IResourcesService : IService
     {

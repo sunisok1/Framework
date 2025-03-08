@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Framework.Yggdrasil.Services;
+using Framework.Yggdrasil;
 using UnityEngine;
 
 namespace Framework.ServiceImpl

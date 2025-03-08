@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Framework.Yggdrasil.Services
+namespace Framework.Yggdrasil
 {
     public class UIPathAttribute : Attribute
     {
